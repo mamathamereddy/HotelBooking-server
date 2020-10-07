@@ -7,13 +7,22 @@ router.route('/').get((req,res)=>{
     .catch(err=>res.status(400).json('Error:'+err));
 });
 
-router.route('/createNew').post((req,res)=>{
+router.route('/addNewCustomer').post((req,res)=>{
     const customerName=req.body.customerName;
     const email=req.body.email;
     const phoneNumber=Number(req.body.phoneNumber);
     const passportNumber=Number(req.body.passportNumber);
+    const rooms=req.body.rooms
 
-    const newCustomer=new Customer({customerName,email,phoneNumber,passportNumber})
+    const newCustomer=new Customer(
+        {
+            customerName,
+            email,
+            phoneNumber,
+            passportNumber,
+            rooms
+        }
+        )
     
     newCustomer.save()
     .then(()=>res.json('Customer added sucessfully!'))

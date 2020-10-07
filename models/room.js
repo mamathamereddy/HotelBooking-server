@@ -1,13 +1,36 @@
 const mongoose=require('mongoose');
+const RoomTypes=require('../types/room')
 
  const Schema=mongoose.Schema;
  
 
  const roomSchema=new Schema({
-    customerName:{type:String,required:true},
-    roomtype:{type:String,required:true},
-    beds:{type:Number},
-    utilitis:{type:String}
+    roomtype:{
+       type:String,
+       required: true,
+       enum:[
+         RoomTypes.DELUX_DOUBLE_ROOM,
+         RoomTypes.DELUX_SINGLE_ROOM,
+         RoomTypes.LUXURY_SINGLE_ROOM,
+         RoomTypes.LUXURY_DOUBLE_ROOM
+       ]
+    },
+    rooms: {
+      type: Number,
+      required: true,
+    },
+    beds: {
+      type: Number,
+      required: true,
+    },
+    utilitise: {
+      type: [String],
+      required: true,
+    },
+    price: {
+      type: Number,
+      required: true,
+    },
  },
  {
     timestamps: true,

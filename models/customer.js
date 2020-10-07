@@ -31,6 +31,11 @@
         unique:true,
         minlength:8,
      },
+     rooms: [
+        { 
+           type: Schema.Types.ObjectId, 
+           ref: "Rooms" }
+         ],
  },
  {
     timestamps: true,

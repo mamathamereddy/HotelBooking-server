@@ -7,17 +7,19 @@ roomRouter.route('/').get((req,res)=>{
     .catch(err=>res.status(400).json('Error:'+err));
 });
 
-roomRouter.route('/createNew').post((req,res)=>{
-    const customerName=req.body.customerName;
+roomRouter.route('/addNewRoom').post((req,res)=>{
     const roomtype=req.body.roomtype;
+    const rooms=req.body.rooms;
     const beds=Number(req.body.beds);
-    const utilitis=req.body.utilitis;
+    const utilitise=req.body.utilitise;
+    const price=Number(req.body.price)
 
     const newRoom=new Rooms({
-        customerName,
         roomtype,
+        rooms,
         beds,
-        utilitis 
+        utilitise,
+        price
     })
     
     newRoom.save()
