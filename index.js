@@ -1,18 +1,19 @@
-require('dotenv').config();
 const express=require('express');
 const mongoose=require('mongoose');//importing mongoose
 const bodyParser = require("body-parser");
 const customerRouter=require('./routes/customers')
 const roomsRouter=require('./routes/rooms')
-
 const cors=require('cors');
-
 const app=express();
+
+require('dotenv').config();
 const port=process.env.PORT ||8080
 
 //middlewares
 app.use(cors());
+app.use(express.json());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 //connecting to DB
 const uri=process.env.ATLAS_URI;
