@@ -9,16 +9,23 @@ roomRouter.route("/").get((req, res) => {
 
 //Returns Room by id
 roomRouter.route("/:id").get((req, res) => {
-  const id=req.params.id;
+  const id = req.params.id;
   Rooms.findById(id)
     .then((rooms) => res.json(rooms))
     .catch((err) => res.status(400).json(`Error: ${err}`));
 });
 
-
 //addind a new room to list
 roomRouter.route("/addNewRoom").post((req, res) => {
-  const { roomtype, rooms, beds, utilitise, price,image,description } = req.body;
+  const {
+    roomtype,
+    rooms,
+    beds,
+    utilitise,
+    price,
+    image,
+    description,
+  } = req.body;
 
   const newRoom = new Rooms({
     roomtype,
@@ -27,10 +34,11 @@ roomRouter.route("/addNewRoom").post((req, res) => {
     utilitise,
     price,
     image,
-    description
+    description,
   });
 
-  newRoom.save()
+  newRoom
+    .save()
     .then(() => res.json("Room added sucessfully!"))
     .catch((err) => res.status(400).json(`Error: ${err}`));
 });

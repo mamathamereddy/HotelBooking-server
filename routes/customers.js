@@ -8,10 +8,15 @@ router.route("/").get((req, res) => {
 });
 
 router.route("/addNewCustomer").post((req, res) => {
-    const {rooms} = req.body;
-    const {customerName, email, phoneNumber, passportNumber} = req.body.customer
-  
-    const newCustomer = new Customer({
+  const { rooms } = req.body;
+  const {
+    customerName,
+    email,
+    phoneNumber,
+    passportNumber,
+  } = req.body.customer;
+
+  const newCustomer = new Customer({
     customerName,
     email,
     phoneNumber,
@@ -19,7 +24,8 @@ router.route("/addNewCustomer").post((req, res) => {
     rooms,
   });
 
-  newCustomer.save()
+  newCustomer
+    .save()
     .then(() => res.json("Customer added sucessfully to DB!"))
     .catch((err) => res.status(400).json(`Error: ${err}`));
 });

@@ -31,12 +31,12 @@ const roomSchema = new Schema(
       type: Number,
       required: true,
     },
-    image:{
-      type:[String],
+    image: {
+      type: [String],
       required: true,
     },
-    description:{
-      type:String,
+    description: {
+      type: String,
     },
   },
   {
